@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+<title>Kenya in 50 Seconds Board Game</title>
+
+<script>
+function gostartbox(){
+	document.getElementById('blur').className = 'blur';
+	setTimeout(function(){document.getElementById('getstartedbox').style.display='block';},1000);
+	setTimeout(function(){document.getElementById('getstartedbox').className = 'animated fadeInDownBig';},1000);
+}
+function gamestart(){
+var teamnamebox1 = document.getElementById('teamnamebox1').value;
+var teamnamebox2 = document.getElementById('teamnamebox2').value;
+
+if(! teamnamebox1){
+   alert('Please enter a Name for Team 1');
+   return;
+}
+else if(! teamnamebox2){
+   alert('Please enter a Name for Team 2');
+   return;
+}
+else {
+localStorage.setItem('nameteam1',teamnamebox1);
+localStorage.setItem('nameteam2',teamnamebox2);
+
+setTimeout(function(){document.getElementById('getstartedbox').className = 'animated fadeOut';},0);
+setTimeout(function(){document.getElementById('getstartedbox').style.display='none';},1000);
+setTimeout(function(){document.getElementById('gamebox').className = 'animated fadeOut';},1000);
+setTimeout(function(){document.getElementById('gamebox').style.display='none';},2000);
+
+setTimeout(function(){document.location.href = 'scoretable.html';},2000);
+}
+}
+</script>
+
+<style type="text/css">
+body {
+	margin: 0px;
+	padding: 0px;
+	background-color: #D2EC7C;
+	font-family: sans-serif;
+}
+.blur {
+	pointer-events: none;
+}
+.redbutton {
+	background-color: #9B212B;
+	color: #FFF;
+	width: 80%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border: 0px solid #9B212B;
+	margin-right: auto;
+	margin-left: auto;
+	display: block;
+	margin-top: 15px;
+}
+.greenbutton {
+	background-color: #0F7D48;
+	color: #FFF;
+	width: 80%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border: 0px solid #9B212B;
+	margin-right: auto;
+	margin-left: auto;
+	display: block;
+	margin-top: 15px;
+}
+.fields {
+	background-color: #F4F8F9;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border: 1px solid #BCCACE;
+	display: block;
+	width: 77%;
+	margin-top: 15px;
+	margin-right: auto;
+	margin-left: auto;
+	padding-left: 3%;
+}
+#getstartedbox {
+	background-color: rgba(255,255,255,0.9);
+	box-shadow: 0 0 25px 1px rgba(0,0,50,0.3);
+	transition: all 0.5s;
+	position: absolute;
+	z-index: 2;
+	height: auto;
+	width: 90%;
+	margin-right: 5%;
+	margin-left: 5%;
+	display: none;
+	margin-top: 5%;
+}
+</style>
+<link href="animate.min.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<div id="getstartedbox">
+<center>
+<br>
+<img src="logo.png" width="10%" style="min-width:150px;">
+</center>
+<input class="fields" id="teamnamebox1" placeholder="Team 1 Name" type="text">
+<input class="fields" id="teamnamebox2" placeholder="Team 2 Name" type="text">
+<button class="redbutton" onClick="gamestart();">Let's Play!</button>
+<button class="greenbutton" onClick="gameshelp();">How to Play</button>
+<button class="greenbutton" onClick="aboutthegame();">About the Game</button>
+<br>
+</div>
+
+<div id="blur" class="animated fadeIn">
+<img id="gamebox" onClick="gostartbox();" src="game box.png" width="100%">
+</div>
+</body>
+</html>

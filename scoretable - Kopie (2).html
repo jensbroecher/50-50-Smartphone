@@ -1,0 +1,450 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+<link href="main.css" rel="stylesheet" type="text/css">
+<link href="animate.min.css" rel="stylesheet" type="text/css">
+
+<script src="jquery.min.js"></script>
+<script src="cardset1.js"></script>
+<script src="cardset2.js"></script>
+<script src="cardset3.js"></script>
+
+<title>Kenya in 50 Seconds Board Game</title>
+
+<script>
+
+myShows = [
+'cardset1',
+'cardset2',
+'cardset3'
+];
+
+// function pickrandomcard() {
+
+// show = myShows[Math.floor(Math.random() * myShows.length)];
+
+//  var i = myShows.indexOf(show);
+
+//  myShows.splice(i, 1);
+
+// alert(i);
+
+// alert(myShows.join('\n'));
+
+// alert(show);
+
+//  }
+
+function newround() {
+	
+	document.getElementById('skipbutton').style.display='block';
+	
+	show = myShows[Math.floor(Math.random() * myShows.length)];
+
+	var i = myShows.indexOf(show);
+
+	myShows.splice(i, 1);
+	
+	//alert(show);
+	
+	if (show == 'cardset1'){
+		// alert('eins');
+		setcardset1();
+	}
+	if (show == 'cardset2'){
+		// alert('zwei');
+		setcardset2();
+	}
+	if (show == 'cardset3'){
+		// alert('drei');
+		setcardset3();
+	}
+	else if (show == undefined){
+		alert('Alle Fragen verbraucht');	
+	}
+	
+	setTimeout(function(){document.getElementById('endround').style.display='none';},0);
+	setTimeout(function(){document.getElementById('playergetready').style.display='none';},0);
+	startquestions()
+}
+function startquestions() {
+	
+	var currentquestionnumber = document.getElementById('currentquestion').innerHTML;
+	
+	if(currentquestionnumber ==1) {
+	document.getElementById('questionshere').innerHTML = localStorage.getItem('q1');
+	setTimeout(function(){document.getElementById('answershere').innerHTML = localStorage.getItem('a1');},2000);
+	document.getElementById('questionshere').className = 'animated bounceIn';
+	}
+	else if(currentquestionnumber ==2) {
+	document.getElementById('questionshere').innerHTML = localStorage.getItem('q2');
+	setTimeout(function(){document.getElementById('answershere').innerHTML = localStorage.getItem('a2');},2000);
+	document.getElementById('questionshere').className = 'animated fadeIn';
+	}
+	else if(currentquestionnumber ==3) {
+	document.getElementById('questionshere').innerHTML = localStorage.getItem('q3');
+	setTimeout(function(){document.getElementById('answershere').innerHTML = localStorage.getItem('a3');},2000);
+	document.getElementById('questionshere').className = 'animated bounceIn';
+	}
+	else if(currentquestionnumber ==4) {
+	document.getElementById('questionshere').innerHTML = localStorage.getItem('q4');
+	setTimeout(function(){document.getElementById('answershere').innerHTML = localStorage.getItem('a4');},2000);
+	document.getElementById('questionshere').className = 'animated fadeIn';
+	}
+	else if(currentquestionnumber ==5) {
+	document.getElementById('questionshere').innerHTML = localStorage.getItem('q5');
+	setTimeout(function(){document.getElementById('answershere').innerHTML = localStorage.getItem('a5');},2000);
+	document.getElementById('questionshere').className = 'animated bounceIn';
+	}
+	else if(currentquestionnumber ==6) {
+	document.getElementById('questionshere').innerHTML = localStorage.getItem('q6');
+	setTimeout(function(){document.getElementById('answershere').innerHTML = localStorage.getItem('a6');},2000);
+	document.getElementById('questionshere').className = 'animated bounceIn';
+	}
+	else if(currentquestionnumber ==7) {
+	document.getElementById('questionshere').innerHTML = localStorage.getItem('q7');
+	setTimeout(function(){document.getElementById('answershere').innerHTML = localStorage.getItem('a7');},2000);
+	document.getElementById('questionshere').className = 'animated fadeIn';
+	}
+	else if(currentquestionnumber ==8) {
+	document.getElementById('questionshere').innerHTML = localStorage.getItem('q8');
+	setTimeout(function(){document.getElementById('answershere').innerHTML = localStorage.getItem('a8');},2000);
+	document.getElementById('questionshere').className = 'animated bounceIn';
+	}
+	else if(currentquestionnumber ==9) {
+	document.getElementById('questionshere').innerHTML = localStorage.getItem('q9');
+	setTimeout(function(){document.getElementById('answershere').innerHTML = localStorage.getItem('a9');},2000);
+	document.getElementById('questionshere').className = 'animated fadeIn';
+	}
+	else if(currentquestionnumber ==10) {
+	document.getElementById('questionshere').innerHTML = localStorage.getItem('q10');
+	setTimeout(function(){document.getElementById('answershere').innerHTML = localStorage.getItem('a10');},2000);
+	document.getElementById('questionshere').className = 'animated bounceIn';
+	}
+	else {
+		document.getElementById('skipbutton').style.display='none';
+		// document.getElementById('questionshere').innerHTML = '';
+		// document.getElementById('answershere').innerHTML = '';
+		document.getElementById('currentquestion').innerHTML = 1;
+		endround();
+	}
+}
+function endround() {
+		setTimeout(function(){document.getElementById('endround').className = 'animated fadeIn';},1000);
+		setTimeout(function(){document.getElementById('endround').style.display='block';},1000);
+		
+		var currentteamforscore = document.getElementById('currentteam').value;
+	
+		if(currentteamforscore == 1){
+		
+			document.getElementById('currentteam').value = 2;
+			startnextround();
+			
+		}
+		else if(currentteamforscore == 2){
+		
+			document.getElementById('currentteam').value = 1;
+			startnextround();
+			
+		}
+		
+}
+function startnextround () {
+	var currentteamforscore = document.getElementById('currentteam').value;
+	
+		if(currentteamforscore == 1){
+		
+			playergetready1();
+			
+		}
+		else if(currentteamforscore == 2){
+		
+			playergetready2();
+			
+		}
+}
+function skipquestion() {
+	questioncountup();
+}
+
+function checkkey() {
+	
+	var currentquestionnumber = document.getElementById('currentquestion').innerHTML;
+	
+	l1 = localStorage.getItem('l1');
+	l2 = localStorage.getItem('l2');
+	l3 = localStorage.getItem('l3');
+	l4 = localStorage.getItem('l4');
+	l5 = localStorage.getItem('l5');
+	l6 = localStorage.getItem('l6');
+	l7 = localStorage.getItem('l7');
+	l8 = localStorage.getItem('l8');
+	l9 = localStorage.getItem('l9');
+	l10 = localStorage.getItem('l10');
+	
+	if(currentquestionnumber ==1 && thekey == l1) {
+		score1up();
+		questioncountup()
+	}
+	if(currentquestionnumber ==2 && thekey == l2) {
+		score1up();
+		questioncountup()
+	}
+	if(currentquestionnumber ==3 && thekey == l3) {
+		score1up();
+		questioncountup()
+	}
+	if(currentquestionnumber ==4 && thekey == l4) {
+		score1up();
+		questioncountup()
+	}
+	if(currentquestionnumber ==5 && thekey == l5) {
+		score1up();
+		questioncountup()
+	}
+	if(currentquestionnumber ==6 && thekey == l6) {
+		score1up();
+		questioncountup()
+	}
+	if(currentquestionnumber ==7 && thekey == l7) {
+		score1up();
+		questioncountup()
+	}
+	if(currentquestionnumber ==8 && thekey == l8) {
+		score1up();
+		questioncountup()
+	}
+	if(currentquestionnumber ==9 && thekey == l9) {
+		score1up();
+		questioncountup()
+	}
+	if(currentquestionnumber ==10 && thekey == l10) {
+		score1up();
+		questioncountup()
+	}
+	else {
+		// alert('fail');
+		// wronganswer();
+		// nextq();
+	}
+}
+function questioncountup() {
+	// Welche Frage Nummer ist es, aktualisiert Counter
+		var currentquestion = document.getElementById('currentquestion').innerHTML;
+		currentquestionnew = (currentquestion*1+1); 
+		document.getElementById('currentquestion').innerHTML=currentquestionnew;
+		
+		startquestions();
+}
+
+function devsettings() {
+setTimeout(function(){document.getElementById('devsettings').className = 'animated fadeIn';},0);
+setTimeout(function(){document.getElementById('devsettings').style.display='block';},1000);
+}
+function closedevsettings() {
+setTimeout(function(){document.getElementById('devsettings').className = 'animated fadeOut';},0);
+setTimeout(function(){document.getElementById('devsettings').style.display='none';},1000);
+}
+
+function score1up() {
+
+	document.getElementById('answershere').style.visibility='visible';
+	document.getElementById('answershere').className = 'animated fadeIn';
+	
+	setTimeout(function(){document.getElementById('answershere').className = 'animated fadeOut';},700);
+	
+	var currentteamforscore = document.getElementById('currentteam').value;
+	
+	if(currentteamforscore == 1){
+		
+	var score1 = document.getElementById('scoreteam1').innerHTML;
+	scoreinbox1 = (score1*1+5); 
+	document.getElementById('scoreteam1').innerHTML=scoreinbox1;
+	
+	}
+	else if(currentteamforscore == 2){
+		
+	var score1 = document.getElementById('scoreteam2').innerHTML;
+	scoreinbox1 = (score1*1+5); 
+	document.getElementById('scoreteam2').innerHTML=scoreinbox1;
+	}
+}
+
+$( document ).ready(function() {
+
+})
+function setbothnames() {
+	document.getElementById('playergetready').style.display='block';
+	document.getElementById('currentroundteam').innerHTML= localStorage.getItem('nameteam1');
+	
+	document.getElementById('nameteam1').innerHTML= localStorage.getItem('nameteam1');
+	document.getElementById('nameteam2').innerHTML= localStorage.getItem('nameteam2');
+		
+	document.getElementById('currentteam').value = 1;
+	
+	playergetready1();
+	
+	document.getElementById('currentround').value= 1 
+}
+
+function playergetready1() {
+	document.getElementById('currentroundteam2').innerHTML= localStorage.getItem('nameteam1');
+	currentteam = '1';
+}
+
+function playergetready2() {
+	document.getElementById('currentroundteam2').innerHTML= localStorage.getItem('nameteam2');
+	currentteam = '2';
+}
+
+Object.defineProperty(Array.prototype, "remove", {
+    enumerable: false,
+    value: function (item) {
+        var removeCounter = 0;
+
+        for (var index = 0; index < this.length; index++) {
+            if (this[index] === item) {
+                this.splice(index, 1);
+                removeCounter++;
+                index--;
+            }
+        }
+        return removeCounter;
+    }
+});
+
+</script>
+
+</head>
+
+<body onLoad="setbothnames();">
+
+<div id="devsettings">
+
+<button onClick="score1up()">Add Team 1</button>
+
+<button onClick="score1down()">Substract Team 1</button>
+
+<button onClick="score2up()">Add Team 2</button>
+
+<button onClick="score2down()">Substract Team 2</button>
+
+<br><br>
+
+<button onClick="pickrandomcard()">Pick Random Card</button>
+
+<button onclick="localStorage.setItem('scorenow2',10);">Set LSO 10</button>
+
+<button onclick="localStorage.setItem('scorenow2',5);">Set LSO 5</button>
+
+<button onclick="localStorage.clear();">Clear LS</button>
+
+<br><br>
+Currentround:<br>
+<input id="currentround" value="0"><br>
+
+Currentquestion:<br>
+<div id="currentquestion">1</div>
+
+Currentteam:<br>
+<input id="currentteam" value="0">
+
+<div>
+<br>
+<center>
+<button onclick="closedevsettings()">Close</button>
+</center>
+</div>
+
+</div>
+
+<div id="endround">
+<br>
+<br>
+Round Complete!<br><br>
+Time up or all Questions Answered!
+<br><br>
+Next Round: <span id="currentroundteam2"></span>
+<br>
+<button onClick="newround();">Go!</button>
+</div>
+
+<div id="playergetready">
+<br><br>
+<div class="animated fadeInUp">
+<span id="currentroundteam"></span>, Get Ready!
+</div>
+<br>
+<button onClick="newround();">Go!</button>
+</div>
+
+<div id="scorekeeper" onClick="devsettings();">
+
+<div id="scoreteam1">0</div>
+<div id="nameteam1">Mr. X</div>
+<div id="scoreteam2">0</div>
+<div id="nameteam2">Mr. Y</div>
+
+</div>
+
+
+<div id="askquestions">
+
+<div id="questionshere"></div>
+
+
+
+</div>
+
+<div id="answershere"> - </div>
+
+</div>
+
+<div id="inanswersletter">
+
+<table width="100%" border="0" cellpadding="0" cellspacing="0" id="letterholder">
+<tr>
+<td>
+
+<div onClick="thekey = 'a';checkkey();">a</div>
+<div onClick="thekey = 'b';checkkey();">b</div>
+<div onClick="thekey = 'c';checkkey();">c</div>
+<div onClick="thekey = 'd';checkkey();">d</div>
+<div onClick="thekey = 'e';checkkey();">e</div>
+<div onClick="thekey = 'f';checkkey();">f</div>
+<div onClick="thekey = 'g';checkkey();">g</div>
+<div onClick="thekey = 'h';checkkey();">h</div>
+<div onClick="thekey = 'i';checkkey();">i</div>
+<div onClick="thekey = 'j';checkkey();">j</div>
+<div onClick="thekey = 'k';checkkey();">k</div>
+<div onClick="thekey = 'l';checkkey();">l</div>
+<div onClick="thekey = 'm';checkkey();">m</div>
+<div onClick="thekey = 'n';checkkey();">n</div>
+<div onClick="thekey = 'o';checkkey();">o</div>
+<div onClick="thekey = 'p';checkkey();">p</div>
+<div onClick="thekey = 'q';checkkey();">q</div>
+<div onClick="thekey = 'r';checkkey();">r</div>
+<div onClick="thekey = 's';checkkey();">s</div>
+<div onClick="thekey = 't';checkkey();">t</div>
+<div onClick="thekey = 'u';checkkey();">u</div>
+<div onClick="thekey = 'v';checkkey();">v</div>
+<div onClick="thekey = 'w';checkkey();">w</div>
+<div onClick="thekey = 'x';checkkey();">x</div>
+<div onClick="thekey = 'y';checkkey();">y</div>
+<div onClick="thekey = 'z';checkkey();">z</div>
+<div id="skipbutton" onClick="skipquestion();">Skip</div>
+
+</td>
+</tr>
+</table>
+
+</div>
+
+<div style="clear:both;"></div>
+
+</body>
+</html>
